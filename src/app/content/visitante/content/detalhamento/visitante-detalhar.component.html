@@ -1,48 +1,45 @@
-<div class="row">
-    <div class="col-12"></div>
-</div>
-
-<div class="row mb-3">
-    <div class="col-12">
-        <mat-card>
-            <h2>
-                <button class="btn-info" mat-icon-button routerLink="/visitante">
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn-outline-info" mat-raised-button routerLink="/visitante">
                     <i class="material-icons">keyboard_arrow_left</i>
+                    Voltar
                 </button>
-                Detalhar Visitante
-            </h2>
-        </mat-card>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12">
-        <mat-card *ngIf="visitante">
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-4 py-3"><span class="text-primary">Nome: </span>
-                    {{ visitante.nome }}
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 py-3">
-                    <span class="text-primary">CPF: </span>
-                    {{ visitante.cpf }}
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 py-3">
-                    <span class="text-primary">Bloco: </span>
-                    {{ visitante.bloco }}
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Detalhar Visitante</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <span class="text-primary">Nome: </span> {{visitante.nome}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <span class="text-primary">CPF: </span> {{visitante.cpf}}
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <span class="text-primary">Bloco: </span> {{visitante.bloco}}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <span class="text-primary">Apartamento: </span> {{visitante.apartamento}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-4 py-3">
-                    <span class="text-primary">Apartamento: </span>
-                    {{ visitante.apartamento }}
-                </div>
-            </div>
-        </mat-card>
-    </div>
-    <div class="col-12 mt-3">
-        <button class="btn-info" mat-raised-button routerLink="/visitante">
-            <i class="material-icons">keyboard_arrow_left</i>
-            Voltar
-        </button>
+        </div>
     </div>
 </div>

@@ -22,6 +22,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {VisitanteFormularioComponent} from '../content/visitante/content/formulario/visitante-formulario.component';
 import {LogoutComponent} from '../components/sidebar/logout.component';
+import {VisitanteDetalharComponent} from '../content/visitante/content/detalhamento/visitante-detalhar.component';
 
 @NgModule({
     imports: [
@@ -52,6 +53,7 @@ import {LogoutComponent} from '../components/sidebar/logout.component';
         UsuarioComponent,
         VisitanteComponent,
         VisitanteFormularioComponent,
+        VisitanteDetalharComponent,
         VeiculoComponent,
         LogoutComponent
     ]

@@ -12,6 +12,7 @@ import {UnidadeComponent} from '../content/unidade/unidade.component';
 import {VeiculoComponent} from '../content/veiculo/veiculo.component';
 import {AuthGuard} from '../auth.guard';
 import {VisitanteFormularioComponent} from '../content/visitante/content/formulario/visitante-formulario.component';
+import {VisitanteDetalharComponent} from '../content/visitante/content/detalhamento/visitante-detalhar.component';
 
 export const AdminLayoutRoutes: Routes = [
     {path: 'correspondencia', component: CorrespondenciaComponent, canActivate: [AuthGuard]},
@@ -37,6 +38,11 @@ export const AdminLayoutRoutes: Routes = [
         data: {
             title: 'Editar'
         },
+    },
+    {
+        path: 'visitante/detalhar/:id',
+        component: VisitanteDetalharComponent,
+        canActivate: [AuthGuard]
     },
     {path: 'assembleia', component: AssembleiaComponent, canActivate: [AuthGuard]},
     {path: 'transparencia', component: TransparenciaComponent, canActivate: [AuthGuard]},
