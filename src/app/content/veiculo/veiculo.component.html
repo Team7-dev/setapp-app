@@ -1,0 +1,99 @@
+<div class="main-content">
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="col-md-3 pull-right">
+                    <button (click)="cleanService()" class="btn-success w-100" mat-raised-button
+                            routerLink='veiculo/cadastrar'>
+                        <mat-icon>add</mat-icon>
+                        Cadastrar Veiculo
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="col-md-12">
+
+                <div class="card">
+
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title ">Listar Veiculos</h4>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+
+                            <mat-form-field>
+                                <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+                            </mat-form-field>
+
+                            <table [dataSource]="dataSource" class="table" mat-table>
+
+                                <ng-container matColumnDef="id">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell> ID</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.id}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="nome">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell> Nome</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.nome}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="cpf">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell> CPF</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.cpf}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="bloco">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell> Bloco</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.bloco}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="apartamento">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell> Apartamento</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.apartamento}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="acoes">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell> Ações</th>
+                                    <td *matCellDef="let element" mat-cell>
+                                        <button (click)="detalharVeiculo(element)" class="text-info" mat-icon-button
+                                                matTooltip="Detalhar">
+                                            <i class="material-icons">list</i>
+                                        </button>
+                                        <button (click)="editarVeiculo(element)" class="text-warning" mat-icon-button
+                                                matTooltip="Editar">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                        <button (click)="confirmarDelecaoVeiculo(element)" class="text-danger"
+                                                mat-icon-button matTooltip="Excluir">
+                                            <i class="material-icons">delete_forever</i>
+                                        </button>
+                                    </td>
+                                </ng-container>
+
+                                <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+                                <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+                            </table>
+
+                            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

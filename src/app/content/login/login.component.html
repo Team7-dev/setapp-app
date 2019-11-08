@@ -1,0 +1,29 @@
+<div class="row">
+
+    <div class="offset-md-4 col-md-4 offset-2 col-8">
+
+        <form class="form-signin mt-3">
+
+            <h1 class="h3 mb-3 font-weight-normal text-center">Forneça seus dados</h1>
+
+            <div class="form-group">
+                <label class="sr-only" for="inputUsuario">Usuário</label>
+                <input matInput [(ngModel)]="usuario.username" class="form-control" id="inputUsuario" name="inputUsuario" placeholder="Usuário" type="user" required>
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="inputSenha">Senha</label>
+                <input matInput [(ngModel)]="usuario.password" class="form-control" id="inputSenha" name="inputSenha" placeholder="Senha" type="password" required>
+            </div>
+
+            <div class="form-group text-center">
+                <button mat-raised-button (click)="login()" class="btn-primary w-50" type="submit">
+                    Entrar
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

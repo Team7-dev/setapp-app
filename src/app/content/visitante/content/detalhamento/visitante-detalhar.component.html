@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12"></div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-12">
+        <mat-card>
+            <h2>
+                <button class="btn-info" mat-icon-button routerLink="/visitante">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                </button>
+                Detalhar Visitante
+            </h2>
+        </mat-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <mat-card *ngIf="visitante">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 py-3"><span class="text-primary">Nome: </span>
+                    {{ visitante.nome }}
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 py-3">
+                    <span class="text-primary">CPF: </span>
+                    {{ visitante.cpf }}
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 py-3">
+                    <span class="text-primary">Bloco: </span>
+                    {{ visitante.bloco }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 py-3">
+                    <span class="text-primary">Apartamento: </span>
+                    {{ visitante.apartamento }}
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-12 mt-3">
+        <button class="btn-info" mat-raised-button routerLink="/visitante">
+            <i class="material-icons">keyboard_arrow_left</i>
+            Voltar
+        </button>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-8">
+              <div class="card">
+                  <div class="card-header card-header-info">
+                      <h4 class="card-title">{{title}} Veículo</h4>
+                  </div>
+                  <div class="card-body">
+                      <form>
+                          <div class="row">
+                              <div class="col-md-10">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Nome" [(ngModel)]="visitante.nome" type="text">
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-2">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="CPF" [(ngModel)]="visitante.cpf" type="text">
+                                  </mat-form-field>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-1">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Bloco" [(ngModel)]="visitante.bloco" type="text">
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-2">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Apartamento" [(ngModel)]="visitante.apartamento" type="text">
+                                </mat-form-field>
+                              </div>
+                          </div>
+                          <button mat-raised-button (click)="salvarVisitante()" type="submit" class="btn btn-primary pull-right">Salvar</button>
+                          <div class="clearfix"></div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn-outline-info" mat-raised-button routerLink="/visitante">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                    Voltar
+                </button>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">{{title}} Visitante</h4>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputNome">Nome</label>
+                                        <input [(ngModel)]="visitante.nome" class="form-control" id="inputNome" matInput
+                                               name="inputNome" requrired type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="inputCpf">CPF</label>
+                                        <input [(ngModel)]="visitante.cpf" class="form-control" id="inputCpf" matInput
+                                               name="inputCpf" required type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label for="inputBloco">Bloco</label>
+                                        <input [(ngModel)]="visitante.bloco" class="form-control" id="inputBloco"
+                                               matInput name="inputBloco" required
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="inputApartamento">Apartamento</label>
+                                        <input [(ngModel)]="visitante.apartamento" class="form-control"
+                                               id="inputApartamento"
+                                               matInput name="inputApartamento" required type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="col-md-12">
+                                <div class="col-md-6 pull-left text-right">
+                                    <button class="btn btn-danger text-center" mat-raised-button
+                                            routerLink="/visitante">
+                                        <i class="material-icons">cancel</i>
+                                        Cancelar
+                                    </button>
+                                </div>
+                                <div class="col-md-6 pull-right text-left">
+                                    <button (click)="salvarVisitante()" class="btn btn-success text-center"
+                                            mat-raised-button
+                                            type="submit">
+                                        <i class="material-icons">save</i>
+                                        Salvar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
