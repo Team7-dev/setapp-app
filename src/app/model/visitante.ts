@@ -1,11 +1,13 @@
+import {Unidade} from './unidade';
 import {InModel} from './in-model';
 
-export class Visitante extends InModel{
+export class Visitante extends InModel {
 
     id: number;
+    dataHoraCadastro: Date;
     nome: string;
     cpf: string;
-    bloco: string;
-    apartamento: number;
+    situacao: string;
+    unidade: Unidade;
 
 }

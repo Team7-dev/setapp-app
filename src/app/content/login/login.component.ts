@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         if (localStorage.getItem('access_token') !== undefined) {
             // pegar informações do usuario e salvar em LoginService.
-            this.loginService.username = localStorage.getItem('username');
+            this.loginService.usuario = localStorage.getItem('usuario');
         }
     }
 
@@ -27,11 +27,11 @@ export class LoginComponent implements OnInit {
         this.loginService.doLogin(this.usuario).subscribe(
             result => {
                 localStorage.setItem('access_token', result);
-                localStorage.setItem('username', this.usuario.username);
+                localStorage.setItem('usuario', this.usuario.usuario);
                 this.router.navigate(['/']);
             },
             error => {
-                this.snackBar.open('Não foi possível realizar o login, verifique seus dados!', 'Close', {duration: 5000});
+                this.snackBar.open('Não foi possível realizar o login, verifique seus dados!', 'Fechar', {duration: 5000});
             }
         );
     }

@@ -13,8 +13,14 @@
                         <h4 class="card-title">Detalhar Visitante</h4>
                     </div>
                     <div class="card-body">
+                        <h4><b>Visitante</b></h4>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <span class="text-primary">ID: </span> {{visitante.id}}
+                                </div>
+                            </div>
+                            <div class="col-md-11">
                                 <div class="form-group">
                                     <span class="text-primary">Nome: </span> {{visitante.nome}}
                                 </div>
@@ -28,12 +34,38 @@
                             </div>
                             <div class="col-md-1">
                                 <div class="form-group">
-                                    <span class="text-primary">Bloco: </span> {{visitante.bloco}}
+                                    <span class="text-primary">Bloco: </span> {{visitante.unidade.bloco}}
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <span class="text-primary">Apartamento: </span> {{visitante.apartamento}}
+                                    <span class="text-primary">Apartamento: </span> {{visitante.unidade.numero}}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="text-primary">Data do cadastro: </span> {{visitante.dataHoraCadastro | date: 'dd/MM/yyyy HH:mm:ss'}}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <span class="text-primary">Situação: </span> {{visitante.situacao}}
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="mat-divider"></div>
+                        <br/>
+                        <h4><b>Morador</b></h4>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <span class="text-primary">ID: </span> {{visitante.unidade.usuario.id}}
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="form-group">
+                                    <span class="text-primary">Nome: </span> {{visitante.unidade.usuario.nome}}
                                 </div>
                             </div>
                         </div>

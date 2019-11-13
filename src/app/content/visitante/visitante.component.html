@@ -34,32 +34,37 @@
                             <table [dataSource]="dataSource" class="table" mat-table>
 
                                 <ng-container matColumnDef="id">
-                                    <th *matHeaderCellDef class="text-center" mat-header-cell> ID</th>
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>ID</th>
                                     <td *matCellDef="let element" mat-cell> {{element.id}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="nome">
-                                    <th *matHeaderCellDef class="text-center" mat-header-cell> Nome</th>
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Nome</th>
                                     <td *matCellDef="let element" mat-cell> {{element.nome}} </td>
                                 </ng-container>
 
-                                <ng-container matColumnDef="cpf">
-                                    <th *matHeaderCellDef class="text-center" mat-header-cell> CPF</th>
-                                    <td *matCellDef="let element" mat-cell> {{element.cpf}} </td>
+                                <ng-container matColumnDef="morador">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Morador</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.unidade.usuario.nome}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="bloco">
-                                    <th *matHeaderCellDef class="text-center" mat-header-cell> Bloco</th>
-                                    <td *matCellDef="let element" mat-cell> {{element.bloco}} </td>
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Bloco</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.unidade.bloco}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="apartamento">
-                                    <th *matHeaderCellDef class="text-center" mat-header-cell> Apartamento</th>
-                                    <td *matCellDef="let element" mat-cell> {{element.apartamento}} </td>
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Apartamento</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.unidade.numero}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="situacao">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Situação</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.situacao}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="acoes">
-                                    <th *matHeaderCellDef class="text-center" mat-header-cell> Ações</th>
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Ações</th>
                                     <td *matCellDef="let element" mat-cell>
                                         <button (click)="detalharVisitante(element)" class="text-info" mat-icon-button
                                                 matTooltip="Detalhar">
@@ -68,6 +73,10 @@
                                         <button (click)="editarVisitante(element)" class="text-warning" mat-icon-button
                                                 matTooltip="Editar">
                                             <i class="material-icons">edit</i>
+                                        </button>
+                                        <button (click)="alterarSituacaoVisitante(element)" class="text-info" mat-icon-button
+                                                matTooltip="Alterar Situação">
+                                            <i class="material-icons">swap_horiz</i>
                                         </button>
                                         <button (click)="confirmarDelecaoVisitante(element)" class="text-danger"
                                                 mat-icon-button matTooltip="Excluir">
@@ -81,7 +90,7 @@
 
                             </table>
 
-                            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 
                         </div>
 

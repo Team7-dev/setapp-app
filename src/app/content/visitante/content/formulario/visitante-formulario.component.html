@@ -28,23 +28,22 @@
                                     <div class="form-group">
                                         <label for="inputCpf">CPF</label>
                                         <input [(ngModel)]="visitante.cpf" class="form-control" id="inputCpf" matInput
-                                               name="inputCpf" required type="text">
+                                               name="inputCpf" required type="text" maxlength="11">
                                     </div>
                                 </div>
                                 <div class="col-md-1">
                                     <div class="form-group">
                                         <label for="inputBloco">Bloco</label>
-                                        <input [(ngModel)]="visitante.bloco" class="form-control" id="inputBloco"
-                                               matInput name="inputBloco" required
-                                               type="text">
+                                        <input [(ngModel)]="visitante.unidade.bloco" class="form-control" id="inputBloco"
+                                               matInput name="inputBloco" required type="text" maxlength="1">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="inputApartamento">Apartamento</label>
-                                        <input [(ngModel)]="visitante.apartamento" class="form-control"
+                                        <input [(ngModel)]="visitante.unidade.numero" class="form-control"
                                                id="inputApartamento"
-                                               matInput name="inputApartamento" required type="text">
+                                               matInput name="inputApartamento" required type="text" maxlength="4">
                                     </div>
                                 </div>
                             </div>

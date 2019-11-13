@@ -13,7 +13,7 @@ import {Usuario} from '../../model/usuario';
 })
 export class LoginService extends AppService {
 
-    public username: any;
+    public usuario: any;
 
     public nextUrl: string;
 

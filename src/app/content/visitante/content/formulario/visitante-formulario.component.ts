@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {VisitanteService} from '../../visitante.service';
 import {InComponent} from '../../../../model/in-component';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Unidade} from '../../../../model/unidade';
 
 @Component({
     templateUrl: './visitante-formulario.component.html',
@@ -11,6 +12,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class VisitanteFormularioComponent extends InComponent implements OnInit {
 
     public visitante: Visitante = new Visitante();
+
     title: string;
 
     constructor(public visitanteService: VisitanteService, private router: Router, public activatedRoute: ActivatedRoute, public snackBar: MatSnackBar) {
@@ -33,9 +35,13 @@ export class VisitanteFormularioComponent extends InComponent implements OnInit 
             this.carregarVisitante(id);
         }
 
+
     }
 
     ngOnInit() {
+        if(!this.activatedRoute.snapshot.params['id']) {
+            this.visitante.unidade = new Unidade();
+        }
     }
 
     carregarVisitante(id: number) {
@@ -44,7 +50,7 @@ export class VisitanteFormularioComponent extends InComponent implements OnInit 
                 this.visitante.fromObject(result);
             },
             error => {
-                this.snackBar.open('Não foi possivel recuperar visitante, tente novamente!', 'Close', {duration: 5000});
+                this.snackBar.open('Não foi possivel recuperar visitante, tente novamente!', 'X', {duration: 5000});
                 this.router.navigate(['/visitante']);
             }
         )
@@ -52,8 +58,12 @@ export class VisitanteFormularioComponent extends InComponent implements OnInit 
 
     salvarVisitante() {
         if (this.visitante.id) {
+            this.visitante.dataHoraCadastro = new Date();
+            this.visitante.situacao = 'ATIVO';
             this.atualizarVisitante();
         } else {
+            this.visitante.dataHoraCadastro = new Date();
+            this.visitante.situacao = 'ATIVO';
             this.cadastrarVisitante();
         }
     }
@@ -61,12 +71,12 @@ export class VisitanteFormularioComponent extends InComponent implements OnInit 
     cadastrarVisitante() {
         this.visitanteService.postVisitante(this.visitante).subscribe(
             result => {
-                this.snackBar.open('Visitante cadastrado com sucesso!', 'Close', {duration: 5000});
+                this.snackBar.open('Visitante cadastrado com sucesso!', 'X', {duration: 5000});
                 this.router.navigate(['/visitante']);
             },
             error => {
                 console.log(error);
-                this.snackBar.open('Não foi possivel cadastrar visitante, verifique os dados e tente novamente!', 'Close', {duration: 5000});
+                this.snackBar.open('Não foi possivel cadastrar visitante, verifique os dados e tente novamente!', 'X', {duration: 5000});
             }
         )
     }
@@ -78,7 +88,7 @@ export class VisitanteFormularioComponent extends InComponent implements OnInit 
                 this.router.navigate(['/visitante']);
             },
             error => {
-                this.snackBar.open('Não foi possivel atualizar visitante, verifique os dados e tente novamente!', 'Close', {duration: 5000});
+                this.snackBar.open('Não foi possivel atualizar visitante, verifique os dados e tente novamente!', 'X', {duration: 5000});
             }
         )
     }

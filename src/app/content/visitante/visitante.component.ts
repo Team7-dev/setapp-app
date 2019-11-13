@@ -18,7 +18,7 @@ export class VisitanteComponent implements OnInit {
     public visitante: Visitante = new Visitante();
     public visitantes: Visitante[] = [];
 
-    displayedColumns: string[] = ['id', 'nome', 'cpf', 'bloco', 'apartamento', 'acoes'];
+    displayedColumns: string[] = ['nome', 'morador', 'bloco', 'apartamento', 'situacao', 'acoes'];
     dataSource = new MatTableDataSource<Visitante>();
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -50,7 +50,7 @@ export class VisitanteComponent implements OnInit {
                 console.log(result);
             },
             error => {
-                this.snackBar.open('Não foi possivel carregar a lista de visitantes, tente novamente!', 'Close', {duration: 5000});
+                this.snackBar.open('Não foi possivel carregar a lista de visitantes, tente novamente!', 'X', {duration: 5000});
                 console.error(error);
             }
         )
@@ -85,11 +85,30 @@ export class VisitanteComponent implements OnInit {
     deletarVisitante(id: number) {
         this.visitanteService.deleteVisitante(id).subscribe(
             result => {
-                this.snackBar.open('Visitante excluido com sucesso!', 'Close', {duration: 5000});
+                this.snackBar.open('Visitante excluido com sucesso!', 'X', {duration: 5000});
                 this.listarVisitantes();
             },
             error => {
-                this.snackBar.open('Não foi possível deletar o visitante, tente novamente!', 'Close', {duration: 5000});
+                this.snackBar.open('Não foi possível deletar o visitante, tente novamente!', 'X', {duration: 5000});
+            }
+        )
+    }
+
+    alterarSituacaoVisitante(visitante: Visitante) {
+
+        if('ATIVO' === visitante.situacao) {
+            visitante.situacao = 'INATIVO';
+        } else {
+            visitante.situacao = 'ATIVO';
+        }
+
+        this.visitanteService.putVisitante(visitante).subscribe(
+            result => {
+                this.snackBar.open('Situação do visitante alterada com sucesso!', 'X', {duration: 5000});
+                this.listarVisitantes();
+            },
+            error => {
+                this.snackBar.open('Não foi possível alterar a situação do visitante, tente novamente!', 'X', {duration: 5000});
             }
         )
     }
