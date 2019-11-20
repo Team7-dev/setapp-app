@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+
+import {Veiculo} from '../../../../model/veiculo';
 import {VeiculoService} from '../../veiculo.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {InComponent} from '../../../../model/in-component';
-import {Veiculo} from '../../../../model/veiculo';
 
 @Component({
     templateUrl: 'veiculo-detalhar.component.html'
@@ -34,7 +35,7 @@ export class VeiculoDetalharComponent extends InComponent implements OnInit {
                 this.veiculo.fromObject(result);
             },
             error => {
-                this.snackBar.open('Não foi possivel recuperar o veículo, tente novamente!', 'Close', {duration: 5000});
+                this.snackBar.open('' + error + '', 'X', {duration: 5000});
                 this.router.navigate(['/veiculo']);
             }
         )

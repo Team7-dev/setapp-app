@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <button class="btn-outline-info" mat-raised-button routerLink="/veiculo">
+                <button class="btn-outline-info" mat-raised-button routerLink="/unidade">
                     <i class="material-icons">keyboard_arrow_left</i>
                     Voltar
                 </button>
@@ -10,34 +10,34 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-info">
-                        <h4 class="card-title">Detalhar Veiculo</h4>
+                        <h4 class="card-title">Detalhar Unidade</h4>
                     </div>
                     <div class="card-body">
-                        <h4><b>Veiculo</b></h4>
+                        <h4><b>Unidade</b></h4>
                         <div class="row">
                             <div class="col-md-1">
                                 <div class="form-group">
-                                    <span class="text-primary">ID: </span> {{veiculo.id}}
+                                    <span class="text-primary">ID: </span> {{unidade.id}}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <span class="text-primary">Data do cadastro: </span> {{veiculo.dataHoraCadastro | date: 'dd/MM/yyyy HH:mm:ss'}}
+                                    <span class="text-primary">Data do cadastro: </span> {{unidade.dataHoraCadastro | date: 'dd/MM/yyyy HH:mm:ss'}}
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <span class="text-primary">Bloco: </span> {{veiculo.bloco}}
+                                    <span class="text-primary">Bloco: </span> {{unidade.bloco}}
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <span class="text-primary">Apartamento: </span> {{veiculo.numero}}
+                                    <span class="text-primary">Apartamento: </span> {{unidade.numero}}
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <span class="text-primary">Situação: </span> {{veiculo.situacao}}
+                                    <span class="text-primary">Situação: </span> {{unidade.situacao}}
                                 </div>
                             </div>
                         </div>

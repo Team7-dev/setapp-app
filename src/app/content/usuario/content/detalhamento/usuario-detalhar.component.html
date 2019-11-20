@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <button class="btn-outline-info" mat-raised-button routerLink="/veiculo">
+                <button class="btn-outline-info" mat-raised-button routerLink="/usuario">
                     <i class="material-icons">keyboard_arrow_left</i>
                     Voltar
                 </button>
@@ -10,34 +10,40 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-info">
-                        <h4 class="card-title">Detalhar Veiculo</h4>
+                        <h4 class="card-title">Detalhar Usuário</h4>
                     </div>
                     <div class="card-body">
-                        <h4><b>Veiculo</b></h4>
                         <div class="row">
                             <div class="col-md-1">
                                 <div class="form-group">
-                                    <span class="text-primary">ID: </span> {{veiculo.id}}
+                                    <span class="text-primary">ID: </span> {{usuario.id}}
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="form-group">
+                                    <span class="text-primary">Nome: </span> {{usuario.nome}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="text-primary">Data do cadastro: </span> {{usuario.dataHoraCadastro | date: 'dd/MM/yyyy HH:mm:ss'}}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <span class="text-primary">CPF: </span> {{usuario.cpf}}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <span class="text-primary">Data do cadastro: </span> {{veiculo.dataHoraCadastro | date: 'dd/MM/yyyy HH:mm:ss'}}
+                                    <span class="text-primary">E-mail: </span> {{usuario.email}}
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <span class="text-primary">Bloco: </span> {{veiculo.bloco}}
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <span class="text-primary">Apartamento: </span> {{veiculo.numero}}
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <span class="text-primary">Situação: </span> {{veiculo.situacao}}
+                                    <span class="text-primary">Situação: </span> {{usuario.situacao}}
                                 </div>
                             </div>
                         </div>

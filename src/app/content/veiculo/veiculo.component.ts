@@ -18,7 +18,7 @@ export class VeiculoComponent implements OnInit {
     public veiculo: Veiculo = new Veiculo();
     public veiculos: Veiculo[] = [];
 
-    displayedColumns: string[] = ['id', 'vaga', 'descricao', 'ativo', 'pesosa', 'acoes'];
+    displayedColumns: string[] = ['id', 'morador', 'apartamento', 'situacao', 'acoes'];
     dataSource = new MatTableDataSource<Veiculo>();
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -50,14 +50,15 @@ export class VeiculoComponent implements OnInit {
                 console.log(result);
             },
             error => {
-                this.snackBar.open('Não foi possivel carregar a lista de veiculos, tente novamente!', 'Close', {duration: 5000});
+                this.snackBar.open('' + error + '', 'X', {duration: 5000});
                 console.error(error);
             }
         )
     }
 
     cadastrarVeiculo() {
-        this.router.navigate(['/cadastrar']);
+        this.cleanService();
+        this.router.navigate(['/veiculo/cadastrar']);
     }
 
     detalharVeiculo(veiculo: Veiculo) {
@@ -67,7 +68,7 @@ export class VeiculoComponent implements OnInit {
 
     editarVeiculo(veiculo: Veiculo) {
         this.veiculoService.veiculo = veiculo;
-        this.router.navigate(['/veiculo/editar/' + veiculo.id]);
+        this.router.navigate(['veiculo/editar/' + veiculo.id]);
     }
 
     confirmarDelecaoVeiculo(veiculo: Veiculo) {
@@ -84,17 +85,17 @@ export class VeiculoComponent implements OnInit {
     deletarVeiculo(id: number) {
         this.veiculoService.deleteVeiculo(id).subscribe(
             result => {
-                this.snackBar.open('Veiculo excluido com sucesso!', 'Close', {duration: 5000});
+                this.snackBar.open('Veiculo excluido com sucesso!', 'X', {duration: 5000});
                 this.listarVeiculos();
             },
             error => {
-                this.snackBar.open('Não foi possível deletar o veiculo, tente novamente!', 'Close', {duration: 5000});
+                this.snackBar.open('' + error + '', 'X', {duration: 5000});
             }
         )
     }
 
     cleanService() {
-        this.veiculoService.veiculo = undefined;
+        this.veiculoService.veiculo = new Veiculo();
     }
 
 }

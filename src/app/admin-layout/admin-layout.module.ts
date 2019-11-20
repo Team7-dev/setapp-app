@@ -23,6 +23,14 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {VisitanteFormularioComponent} from '../content/visitante/content/formulario/visitante-formulario.component';
 import {LogoutComponent} from '../components/sidebar/logout.component';
 import {VisitanteDetalharComponent} from '../content/visitante/content/detalhamento/visitante-detalhar.component';
+import {UsuarioFormularioComponent} from '../content/usuario/content/formulario/usuario-formulario.component';
+import {UsuarioDetalharComponent} from '../content/usuario/content/detalhamento/usuario-detalhar.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {UnidadeFormularioComponent} from '../content/unidade/content/formulario/unidade-formulario.component';
+import {UnidadeDetalharComponent} from '../content/unidade/content/detalhamento/unidade-detalhar.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {VeiculoFormularioComponent} from '../content/veiculo/content/formulario/veiculo-formulario.component';
+import {VeiculoDetalharComponent} from '../content/veiculo/content/detalhamento/veiculo-detalhar.component';
 
 @NgModule({
     imports: [
@@ -40,6 +48,8 @@ import {VisitanteDetalharComponent} from '../content/visitante/content/detalhame
         MatTableModule,
         MatIconModule,
         MatDialogModule,
+        MatButtonToggleModule,
+        MatAutocompleteModule,
     ],
     declarations: [
         AssembleiaComponent,
@@ -50,11 +60,17 @@ import {VisitanteDetalharComponent} from '../content/visitante/content/detalhame
         ReservaComponent,
         TransparenciaComponent,
         UnidadeComponent,
+        UnidadeFormularioComponent,
+        UnidadeDetalharComponent,
         UsuarioComponent,
+        UsuarioFormularioComponent,
+        UsuarioDetalharComponent,
         VisitanteComponent,
         VisitanteFormularioComponent,
         VisitanteDetalharComponent,
         VeiculoComponent,
+        VeiculoFormularioComponent,
+        VeiculoDetalharComponent,
         LogoutComponent
     ]
 })

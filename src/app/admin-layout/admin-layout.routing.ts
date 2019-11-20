@@ -13,6 +13,12 @@ import {VeiculoComponent} from '../content/veiculo/veiculo.component';
 import {AuthGuard} from '../auth.guard';
 import {VisitanteFormularioComponent} from '../content/visitante/content/formulario/visitante-formulario.component';
 import {VisitanteDetalharComponent} from '../content/visitante/content/detalhamento/visitante-detalhar.component';
+import {UsuarioFormularioComponent} from '../content/usuario/content/formulario/usuario-formulario.component';
+import {UsuarioDetalharComponent} from '../content/usuario/content/detalhamento/usuario-detalhar.component';
+import {UnidadeDetalharComponent} from '../content/unidade/content/detalhamento/unidade-detalhar.component';
+import {UnidadeFormularioComponent} from '../content/unidade/content/formulario/unidade-formulario.component';
+import {VeiculoDetalharComponent} from '../content/veiculo/content/detalhamento/veiculo-detalhar.component';
+import {VeiculoFormularioComponent} from '../content/veiculo/content/formulario/veiculo-formulario.component';
 
 export const AdminLayoutRoutes: Routes = [
     {path: 'correspondencia', component: CorrespondenciaComponent, canActivate: [AuthGuard]},
@@ -48,7 +54,74 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'transparencia', component: TransparenciaComponent, canActivate: [AuthGuard]},
     {path: 'emergencia', component: EmergenciaComponent, canActivate: [AuthGuard]},
     {path: 'boleto', component: BoletoComponent, canActivate: [AuthGuard]},
-    {path: 'unidade', component: UnidadeComponent, canActivate: [AuthGuard]},
+    {
+        path: 'unidade',
+        component: UnidadeComponent,
+        canActivate: [AuthGuard]},
+    {
+        path: 'unidade/cadastrar',
+        component: UnidadeFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Cadastrar'
+        },
+    },
+    {
+        path: 'unidade/editar/:id',
+        component: UnidadeFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Editar'
+        },
+    },
+    {
+        path: 'unidade/detalhar/:id',
+        component: UnidadeDetalharComponent,
+        canActivate: [AuthGuard]
+    },
     {path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard]},
+    {
+        path: 'usuario/cadastrar',
+        component: UsuarioFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Cadastrar'
+        },
+    },
+    {
+        path: 'usuario/editar/:id',
+        component: UsuarioFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Editar'
+        },
+    },
+    {
+        path: 'usuario/detalhar/:id',
+        component: UsuarioDetalharComponent,
+        canActivate: [AuthGuard]
+    },
     {path: 'veiculo', component: VeiculoComponent, canActivate: [AuthGuard]},
+    {
+        path: 'veiculo/cadastrar',
+        component: VeiculoFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Cadastrar'
+        },
+    },
+    {
+        path: 'veiculo/editar/:id',
+        component: VeiculoFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Editar'
+        },
+    },
+    {
+        path: 'veiculo/detalhar/:id',
+        component: VeiculoDetalharComponent,
+        canActivate: [AuthGuard]
+    }
+
 ];

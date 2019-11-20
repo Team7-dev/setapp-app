@@ -6,6 +6,7 @@ export class Veiculo extends InModel {
 
     id: number;
     dataHoraCadastro: Date;
+    placa: string;
     situacao: string;
     unidade: Unidade;
     usuario: Usuario;

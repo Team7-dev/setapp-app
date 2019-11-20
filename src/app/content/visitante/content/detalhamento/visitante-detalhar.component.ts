@@ -35,7 +35,7 @@ export class VisitanteDetalharComponent extends InComponent implements OnInit {
                 this.visitante.fromObject(result);
             },
             error => {
-                this.snackBar.open('Não foi possivel recuperar visitante, tente novamente!', 'X', {duration: 5000});
+                this.snackBar.open('' + error + '', 'X', {duration: 5000});
                 this.router.navigate(['/visitante']);
             }
         )

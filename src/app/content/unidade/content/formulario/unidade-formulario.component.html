@@ -1,0 +1,81 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn-outline-info" mat-raised-button routerLink="/unidade">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                    Voltar
+                </button>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">{{title}} Unidade</h4>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <mat-form-field>
+                                        <mat-label for="inputBloco">Bloco</mat-label>
+                                        <input [(ngModel)]="unidade.bloco" id="inputBloco" matInput name="inputBloco"
+                                               maxlength="1" required type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field>
+                                        <mat-label for="inputNumero">Número</mat-label>
+                                        <input [(ngModel)]="unidade.numero" id="inputNumero" matInput maxlength="4"
+                                               name="inputNumero" required type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field>
+                                        <mat-label for="inputSituacao">Situação</mat-label>
+                                        <mat-select [(ngModel)]="unidade.situacao" id="inputSituacao" name="inputSituacao" required (blur)="recuperarUsuario()">
+                                            <mat-option value="VAGO">Vago</mat-option>
+                                            <mat-option value="OCUPADO">Ocupado</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="unidade.situacao == 'OCUPADO'">
+                                <div class="col-md-12">
+                                    <mat-form-field>
+                                        <mat-label for="inputNome">Moradores</mat-label>
+                                        <input [(ngModel)]="unidade.usuario" type="text" matInput [matAutocomplete]="auto" id="inputNome" name="inputNome" required>
+                                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                                            <mat-option *ngFor="let usuario of filteredOptions | async" [value]="usuario">
+                                                {{usuario.nome}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="col-md-12">
+                                <div class="col-md-6 pull-left text-right">
+                                    <button class="btn btn-danger text-center" mat-raised-button
+                                            routerLink="/unidade">
+                                        <i class="material-icons">cancel</i>
+                                        Cancelar
+                                    </button>
+                                </div>
+                                <div class="col-md-6 pull-right text-left">
+                                    <button (click)="salvarUnidade()" class="btn btn-success text-center"
+                                            mat-raised-button
+                                            type="submit">
+                                        <i class="material-icons">save</i>
+                                        Salvar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

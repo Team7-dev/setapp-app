@@ -18,7 +18,7 @@ export class VisitanteComponent implements OnInit {
     public visitante: Visitante = new Visitante();
     public visitantes: Visitante[] = [];
 
-    displayedColumns: string[] = ['nome', 'morador', 'bloco', 'apartamento', 'situacao', 'acoes'];
+    displayedColumns: string[] = ['id', 'nome', 'morador', 'bloco', 'apartamento', 'situacao', 'acoes'];
     dataSource = new MatTableDataSource<Visitante>();
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -50,7 +50,7 @@ export class VisitanteComponent implements OnInit {
                 console.log(result);
             },
             error => {
-                this.snackBar.open('Não foi possivel carregar a lista de visitantes, tente novamente!', 'X', {duration: 5000});
+                this.snackBar.open('' + error + '', 'X', {duration: 5000});
                 console.error(error);
             }
         )
@@ -89,7 +89,7 @@ export class VisitanteComponent implements OnInit {
                 this.listarVisitantes();
             },
             error => {
-                this.snackBar.open('Não foi possível deletar o visitante, tente novamente!', 'X', {duration: 5000});
+                this.snackBar.open('' + error + '', 'X', {duration: 5000});
             }
         )
     }
@@ -108,7 +108,7 @@ export class VisitanteComponent implements OnInit {
                 this.listarVisitantes();
             },
             error => {
-                this.snackBar.open('Não foi possível alterar a situação do visitante, tente novamente!', 'X', {duration: 5000});
+                this.snackBar.open('' + error + '', 'X', {duration: 5000});
             }
         )
     }

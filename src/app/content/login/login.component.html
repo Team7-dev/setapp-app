@@ -2,22 +2,23 @@
 
     <div class="offset-md-4 col-md-4 offset-2 col-8">
 
-        <form class="form-signin mt-3">
+        <form class="form-signin mt-3" name="loginForm">
 
             <h1 class="h3 mb-3 font-weight-normal text-center">Forneça seus dados</h1>
 
-            <div class="form-group">
-                <label class="sr-only" for="inputUsuario">Usuário</label>
-                <input matInput [(ngModel)]="usuario.usuario" class="form-control" id="inputUsuario" name="inputUsuario" placeholder="Usuário" type="user" required>
-            </div>
+            <mat-form-field>
+                <mat-label for="inputUsuario">Usuário</mat-label>
+                <input [(ngModel)]="usuario.usuario" id="inputUsuario" matInput name="inputUsuario" required
+                       type="user">
+            </mat-form-field>
 
-            <div class="form-group">
-                <label class="sr-only" for="inputSenha">Senha</label>
-                <input matInput [(ngModel)]="usuario.senha" class="form-control" id="inputSenha" name="inputSenha" placeholder="Senha" type="password" required>
-            </div>
+            <mat-form-field>
+                <mat-label for="inputSenha">Senha</mat-label>
+                <input [(ngModel)]="usuario.senha" id="inputSenha" matInput name="inputSenha" required type="password">
+            </mat-form-field>
 
             <div class="form-group text-center">
-                <button mat-raised-button (click)="login()" class="btn-primary w-50" type="submit">
+                <button (click)="login()" class="btn-primary w-50" mat-raised-button type="submit" [disabled]="!(usuario.usuario && usuario.senha)">
                     Entrar
                 </button>
             </div>

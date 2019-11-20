@@ -12,7 +12,6 @@ import {Unidade} from '../../../../model/unidade';
 export class VisitanteFormularioComponent extends InComponent implements OnInit {
 
     public visitante: Visitante = new Visitante();
-
     title: string;
 
     constructor(public visitanteService: VisitanteService, private router: Router, public activatedRoute: ActivatedRoute, public snackBar: MatSnackBar) {
@@ -34,12 +33,10 @@ export class VisitanteFormularioComponent extends InComponent implements OnInit 
         if (id) {
             this.carregarVisitante(id);
         }
-
-
     }
 
     ngOnInit() {
-        if(!this.activatedRoute.snapshot.params['id']) {
+        if (!this.activatedRoute.snapshot.params['id']) {
             this.visitante.unidade = new Unidade();
         }
     }
@@ -50,7 +47,7 @@ export class VisitanteFormularioComponent extends InComponent implements OnInit 
                 this.visitante.fromObject(result);
             },
             error => {
-                this.snackBar.open('Não foi possivel recuperar visitante, tente novamente!', 'X', {duration: 5000});
+                this.snackBar.open('' + error + '', 'X', {duration: 5000});
                 this.router.navigate(['/visitante']);
             }
         )
@@ -75,8 +72,7 @@ export class VisitanteFormularioComponent extends InComponent implements OnInit 
                 this.router.navigate(['/visitante']);
             },
             error => {
-                console.log(error);
-                this.snackBar.open('Não foi possivel cadastrar visitante, verifique os dados e tente novamente!', 'X', {duration: 5000});
+                this.snackBar.open('' + error + '', 'X', {duration: 5000});
             }
         )
     }
@@ -84,11 +80,11 @@ export class VisitanteFormularioComponent extends InComponent implements OnInit 
     private atualizarVisitante() {
         this.visitanteService.putVisitante(this.visitante).subscribe(
             result => {
-                this.snackBar.open('Visitante alterado com sucesso!', 'Close', {duration: 5000});
+                this.snackBar.open('Visitante alterado com sucesso!', 'X', {duration: 5000});
                 this.router.navigate(['/visitante']);
             },
             error => {
-                this.snackBar.open('Não foi possivel atualizar visitante, verifique os dados e tente novamente!', 'X', {duration: 5000});
+                this.snackBar.open('' + error + '', 'X', {duration: 5000});
             }
         )
     }

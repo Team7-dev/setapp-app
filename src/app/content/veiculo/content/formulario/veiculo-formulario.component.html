@@ -1,43 +1,68 @@
 <div class="main-content">
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-8">
-              <div class="card">
-                  <div class="card-header card-header-info">
-                      <h4 class="card-title">{{title}} Veículo</h4>
-                  </div>
-                  <div class="card-body">
-                      <form>
-                          <div class="row">
-                              <div class="col-md-10">
-                                  <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Nome" [(ngModel)]="visitante.nome" type="text">
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-md-2">
-                                  <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="CPF" [(ngModel)]="visitante.cpf" type="text">
-                                  </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-1">
-                                  <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Bloco" [(ngModel)]="visitante.bloco" type="text">
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-md-2">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Apartamento" [(ngModel)]="visitante.apartamento" type="text">
-                                </mat-form-field>
-                              </div>
-                          </div>
-                          <button mat-raised-button (click)="salvarVisitante()" type="submit" class="btn btn-primary pull-right">Salvar</button>
-                          <div class="clearfix"></div>
-                      </form>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn-outline-info" mat-raised-button routerLink="/veiculo">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                    Voltar
+                </button>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">{{title}} Veiculo</h4>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <mat-form-field>
+                                        <mat-label for="inputSituacao">Situação da vaga</mat-label>
+                                        <mat-select [(ngModel)]="veiculo.situacao" id="inputSituacao" name="inputSituacao" required (blur)="recuperarUnidades()">
+                                            <mat-option value="VAGA">Vaga</mat-option>
+                                            <mat-option value="OCUPADA">Ocupada</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2" *ngIf="veiculo.situacao">
+                                    <mat-form-field>
+                                        <mat-label for="inputUnidade">Unidade</mat-label>
+                                        <input [(ngModel)]="veiculo.unidade" type="text" matInput [matAutocomplete]="auto" id="inputUnidade" name="inputUnidade" required>
+                                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                                            <mat-option *ngFor="let unidade of filteredOptions | async" [value]="unidade">
+                                                {{unidade.bloco}} - {{unidade.numero}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="veiculo.situacao === 'OCUPADA'" class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label for="inputPlaca">Placa</mat-label>
+                                        <input [(ngModel)]="veiculo.placa" id="inputPlaca" matInput maxlength="8" name="inputPlaca" required type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="col-md-12">
+                                <div class="col-md-6 pull-left text-right">
+                                    <button class="btn btn-danger text-center" mat-raised-button routerLink="/veiculo">
+                                        <i class="material-icons">cancel</i>
+                                        Cancelar
+                                    </button>
+                                </div>
+                                <div class="col-md-6 pull-right text-left">
+                                    <button (click)="salvarVeiculo()" class="btn btn-success text-center" mat-raised-button type="submit">
+                                        <i class="material-icons">save</i>
+                                        Salvar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
