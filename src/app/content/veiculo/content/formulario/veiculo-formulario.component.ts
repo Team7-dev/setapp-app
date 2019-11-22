@@ -4,13 +4,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {VeiculoService} from '../../veiculo.service';
 import {InComponent} from '../../../../model/in-component';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {UsuarioService} from '../../../usuario/usuario.service';
-import {Usuario} from '../../../../model/usuario';
 import {FormControl} from '@angular/forms';
 import {map, startWith} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Unidade} from '../../../../model/unidade';
 import {UnidadeService} from '../../../unidade/unidade.service';
+import {Usuario} from '../../../../model/usuario';
 
 @Component({
     templateUrl: './veiculo-formulario.component.html',
@@ -46,10 +45,9 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
 
     ngOnInit() {
         if (!this.activatedRoute.snapshot.params['id']) {
-            this.veiculo.usuario = null;
-            this.veiculo.unidade = null;
+            this.veiculo.usuario = new Usuario();
+            this.veiculo.unidade = new Unidade();
         }
-        this.recuperarUnidades();
         this.filteredOptions = this.myControl.valueChanges
             .pipe(
                 startWith(''),
@@ -71,9 +69,11 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
 
     salvarVeiculo() {
         if (this.veiculo.id) {
+            this.veiculo.usuario = this.veiculo.unidade.usuario;
             this.veiculo.dataHoraCadastro = new Date();
             this.atualizarVeiculo();
         } else {
+            this.veiculo.usuario = this.veiculo.unidade.usuario;
             this.veiculo.dataHoraCadastro = new Date();
             this.cadastrarVeiculo();
         }
@@ -92,6 +92,7 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
     }
 
     recuperarUnidades() {
+        this.veiculo.unidade = new Unidade();
         if (this.veiculo.situacao === 'VAGA') {
             this.recuperarUnidadesVagas();
         } else {
@@ -135,8 +136,8 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
         )
     }
 
-    displayFn(unidade?: Unidade): number | undefined {
-        return unidade ? unidade.numero : undefined;
+    displayFn(unidade?: Unidade): string | undefined {
+        return unidade ? unidade.bloco : undefined;
     }
 
     private atualizarVeiculo() {
@@ -151,8 +152,8 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
         )
     }
 
-    private _filter(apartamento: number): Unidade[] {
-        const filterValue = apartamento;
-        return this.unidades.filter(unidade => unidade.numero === filterValue);
+    private _filter(bloco: string): Unidade[] {
+        const filterValue = bloco.toUpperCase();
+        return this.unidades.filter(unidade => unidade.bloco.toUpperCase() === filterValue);
     }
 }

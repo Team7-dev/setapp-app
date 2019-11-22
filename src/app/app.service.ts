@@ -81,8 +81,6 @@ export class AppService {
         // return an observable with a user-facing error message
         if(error.status == 500) {
             return throwError('Erro interno, favor entrar em contato com o suporte!');
-        } else if(error.status == 404 && error.error == '[object Object]') {
-            return throwError('Não há registros disponíveis!');
         } else {
             return throwError(error.status + " - " + error.error);
         }

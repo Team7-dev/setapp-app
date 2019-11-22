@@ -37,7 +37,7 @@ export class UsuarioFormularioComponent extends InComponent implements OnInit {
 
     ngOnInit() {
         if (!this.activatedRoute.snapshot.params['id']) {
-            this.usuario.perfil = null;
+            this.usuario.perfil = new Perfil();
         }
     }
 

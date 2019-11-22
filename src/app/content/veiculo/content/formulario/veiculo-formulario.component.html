@@ -19,26 +19,35 @@
                                     <mat-form-field>
                                         <mat-label for="inputSituacao">Situação da vaga</mat-label>
                                         <mat-select [(ngModel)]="veiculo.situacao" id="inputSituacao" name="inputSituacao" required (blur)="recuperarUnidades()">
-                                            <mat-option value="VAGA">Vaga</mat-option>
-                                            <mat-option value="OCUPADA">Ocupada</mat-option>
+                                            <mat-option value="VAGA">Vaga
+                                            </mat-option>
+                                            <mat-option value="OCUPADA">Ocupada
+                                            </mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-2" *ngIf="veiculo.situacao">
+                                <div *ngIf="veiculo.situacao" class="col-md-2">
                                     <mat-form-field>
                                         <mat-label for="inputUnidade">Unidade</mat-label>
-                                        <input [(ngModel)]="veiculo.unidade" type="text" matInput [matAutocomplete]="auto" id="inputUnidade" name="inputUnidade" required>
+                                        <input [(ngModel)]="veiculo.unidade" [matAutocomplete]="auto" id="inputUnidade"
+                                               matInput name="inputUnidade" required type="text">
                                         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                                             <mat-option *ngFor="let unidade of filteredOptions | async" [value]="unidade">
-                                                {{unidade.bloco}} - {{unidade.numero}}
+                                                {{unidade.bloco}}
                                             </mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
+                                <!--<div class="col-md-8">
+                                    <span class="text-primary">Responsável: </span>{{veiculo.unidade.usuario.nome}}
+                                </div>-->
+                            </div>
+                            <div class="row">
                                 <div *ngIf="veiculo.situacao === 'OCUPADA'" class="col-md-3">
                                     <mat-form-field>
                                         <mat-label for="inputPlaca">Placa</mat-label>
-                                        <input [(ngModel)]="veiculo.placa" id="inputPlaca" matInput maxlength="8" name="inputPlaca" required type="text">
+                                        <input [(ngModel)]="veiculo.placa" id="inputPlaca" matInput maxlength="8"
+                                               name="inputPlaca" required type="text">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -52,7 +61,8 @@
                                     </button>
                                 </div>
                                 <div class="col-md-6 pull-right text-left">
-                                    <button (click)="salvarVeiculo()" class="btn btn-success text-center" mat-raised-button type="submit">
+                                    <button (click)="salvarVeiculo()" class="btn btn-success text-center"
+                                            mat-raised-button type="submit">
                                         <i class="material-icons">save</i>
                                         Salvar
                                     </button>

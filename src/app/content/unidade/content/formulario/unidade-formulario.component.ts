@@ -44,7 +44,7 @@ export class UnidadeFormularioComponent extends InComponent implements OnInit {
 
     ngOnInit() {
         if (!this.activatedRoute.snapshot.params['id']) {
-            this.unidade.usuario = null;
+            this.unidade.usuario = new Usuario();
         }
         this.filteredOptions = this.myControl.valueChanges
             .pipe(
@@ -68,9 +68,11 @@ export class UnidadeFormularioComponent extends InComponent implements OnInit {
     salvarUnidade() {
         if (this.unidade.id) {
             this.unidade.dataHoraCadastro = new Date();
+            this.unidade.bloco.toUpperCase();
             this.atualizarUnidade();
         } else {
             this.unidade.dataHoraCadastro = new Date();
+            this.unidade.bloco.toUpperCase();
             this.cadastrarUnidade();
         }
     }
