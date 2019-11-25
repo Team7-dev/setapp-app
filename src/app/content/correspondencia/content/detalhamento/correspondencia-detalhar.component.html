@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn-outline-info" mat-raised-button routerLink="/correspondencia">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                    Voltar
+                </button>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Detalhar Usuário</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <span class="text-primary">ID: </span> {{correspondencia.id}}
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="form-group">
+                                    <span class="text-primary">Nome: </span> {{correspondencia.nome}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="text-primary">Data do cadastro: </span> {{correspondencia.dataHoraCadastro | date: 'dd/MM/yyyy HH:mm:ss'}}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <span class="text-primary">CPF: </span> {{correspondencia.cpf}}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="text-primary">E-mail: </span> {{correspondencia.email}}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <span class="text-primary">Situação: </span> {{correspondencia.situacao}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

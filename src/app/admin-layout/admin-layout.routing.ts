@@ -19,9 +19,36 @@ import {UnidadeDetalharComponent} from '../content/unidade/content/detalhamento/
 import {UnidadeFormularioComponent} from '../content/unidade/content/formulario/unidade-formulario.component';
 import {VeiculoDetalharComponent} from '../content/veiculo/content/detalhamento/veiculo-detalhar.component';
 import {VeiculoFormularioComponent} from '../content/veiculo/content/formulario/veiculo-formulario.component';
+import {CorrespondenciaFormularioComponent} from '../content/correspondencia/content/formulario/correspondencia-formulario.component';
+import {CorrespondenciaDetalharComponent} from '../content/correspondencia/content/detalhamento/correspondencia-detalhar.component';
 
 export const AdminLayoutRoutes: Routes = [
-    {path: 'correspondencia', component: CorrespondenciaComponent, canActivate: [AuthGuard]},
+    {
+        path: 'correspondencia',
+        component: CorrespondenciaComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'correspondencia/cadastrar',
+        component: CorrespondenciaFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Cadastrar'
+        },
+    },
+    {
+        path: 'correspondencia/editar/:id',
+        component: CorrespondenciaFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Editar'
+        },
+    },
+    {
+        path: 'correspondencia/detalhar/:id',
+        component: CorrespondenciaDetalharComponent,
+        canActivate: [AuthGuard]
+    },
     {path: 'reserva', component: ReservaComponent, canActivate: [AuthGuard]},
     {path: 'ocorrencia', component: OcorrenciaComponent, canActivate: [AuthGuard]},
     {

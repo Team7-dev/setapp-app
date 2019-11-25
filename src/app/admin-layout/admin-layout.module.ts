@@ -31,6 +31,9 @@ import {UnidadeDetalharComponent} from '../content/unidade/content/detalhamento/
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {VeiculoFormularioComponent} from '../content/veiculo/content/formulario/veiculo-formulario.component';
 import {VeiculoDetalharComponent} from '../content/veiculo/content/detalhamento/veiculo-detalhar.component';
+import {CorrespondenciaFormularioComponent} from '../content/correspondencia/content/formulario/correspondencia-formulario.component';
+import {CorrespondenciaDetalharComponent} from '../content/correspondencia/content/detalhamento/correspondencia-detalhar.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
     imports: [
@@ -50,11 +53,14 @@ import {VeiculoDetalharComponent} from '../content/veiculo/content/detalhamento/
         MatDialogModule,
         MatButtonToggleModule,
         MatAutocompleteModule,
+        MatDatepickerModule,
     ],
     declarations: [
         AssembleiaComponent,
         BoletoComponent,
         CorrespondenciaComponent,
+        CorrespondenciaFormularioComponent,
+        CorrespondenciaDetalharComponent,
         EmergenciaComponent,
         OcorrenciaComponent,
         ReservaComponent,
