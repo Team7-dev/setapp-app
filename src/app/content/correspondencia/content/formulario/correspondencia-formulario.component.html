@@ -18,10 +18,11 @@
                                 <div class="col-md-12">
                                     <mat-form-field>
                                         <mat-label for="inputDescricao">Descrição</mat-label>
-                                        <textarea [(ngModel)]="correspondencia.descricao" cdkTextareaAutosize
-                                                  #autosize="cdkTextareaAutosize"
+                                        <textarea #autosize="cdkTextareaAutosize" [(ngModel)]="correspondencia.descricao"
+                                                  cdkAutosizeMaxRows="5"
                                                   cdkAutosizeMinRows="1"
-                                                  cdkAutosizeMaxRows="5" id="inputDescricao" matInput name="inputDescricao"
+                                                  cdkTextareaAutosize id="inputDescricao" matInput
+                                                  name="inputDescricao"
                                                   required type="text"></textarea>
                                     </mat-form-field>
                                 </div>
@@ -30,25 +31,32 @@
                                 <div class="col-md-2">
                                     <mat-form-field>
                                         <mat-label for="inputDataRecebimento">Data Recebimento</mat-label>
-                                            <input [(ngModel)]="correspondencia.dataHoraRecebida" matInput [matDatepicker]="picker" id="inputDataRecebimento" name="inputDataRecebimento" required>
-                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                            <mat-datepicker #picker></mat-datepicker>
+                                        <input [(ngModel)]="correspondencia.dataHoraRecebida" [matDatepicker]="picker"
+                                               id="inputDataRecebimento" matInput
+                                               name="inputDataRecebimento" required>
+                                        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
                                 </div>
-                                <!--<div class="col-md-6">
+                                <div *ngIf="correspondencia.id != null" class="col-md-2">
                                     <mat-form-field>
-                                        <mat-label for="inputEmail">E-mail</mat-label>
-                                        <input [(ngModel)]="correspondencia.email" id="inputEmail" matInput maxlength="100"
-                                               name="inputEmail" required type="email">
+                                        <mat-label for="inputDataRetirada">Data Retirada</mat-label>
+                                        <input [(ngModel)]="correspondencia.dataHoraRetirada" [matDatepicker]="picker"
+                                               id="inputDataRetirada" matInput name="inputDataRetirada"
+                                               required>
+                                        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
-                                </div>-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-8">
                                     <mat-form-field>
-                                        <mat-label for="inputCorrespondencia">Usuário</mat-label>
-                                        <input [(ngModel)]="correspondencia.usuario" id="inputCorrespondencia" matInput
-                                               name="inputCorrespondencia" required type="text">
+                                        <mat-label for="inputUsuario">Usuário</mat-label>
+                                        <input [(ngModel)]="correspondencia.usuario" type="text" aria-label="Number" matInput [matAutocomplete]="auto" required>
+                                        <mat-autocomplete #auto="matAutocomplete">
+                                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                                {{option}}
+                                            </mat-option>
+                                        </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
                             </div>

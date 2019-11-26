@@ -6,7 +6,9 @@ import {InComponent} from '../../../../model/in-component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Usuario} from '../../../../model/usuario';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
-import {take} from 'rxjs/operators';
+import {map, startWith, take} from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
     templateUrl: './correspondencia-formulario.component.html',
@@ -14,6 +16,10 @@ import {take} from 'rxjs/operators';
 export class CorrespondenciaFormularioComponent extends InComponent implements OnInit {
 
     @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
+
+    myControl = new FormControl();
+    options: Usuario[];
+    filteredOptions: Observable<Usuario[]>;
 
     public correspondencia: Correspondencia = new Correspondencia();
     title: string;
@@ -43,12 +49,24 @@ export class CorrespondenciaFormularioComponent extends InComponent implements O
         if (!this.activatedRoute.snapshot.params['id']) {
             this.correspondencia.usuario = new Usuario();
         }
+
+        this.filteredOptions = this.myControl.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filter(value))
+            );
     }
 
     triggerResize() {
         // Wait for changes to be applied, then trigger textarea resize.
         this._ngZone.onStable.pipe(take(1))
             .subscribe(() => this.autosize.resizeToFitContent(true));
+    }
+
+    private _filter(value: Usuario): Usuario[] {
+        const filterValue = value.nome.toLowerCase();
+
+        return this.options.filter(option => option.nome.toLowerCase().includes(filterValue));
     }
 
     carregarCorrespondencia(id: number) {
