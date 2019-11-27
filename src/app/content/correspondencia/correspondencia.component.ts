@@ -96,15 +96,17 @@ export class CorrespondenciaComponent implements OnInit {
 
   alterarSituacaoCorrespondencia(correspondencia: Correspondencia) {
 
-    if ('ATIVO' === correspondencia.situacao) {
-      correspondencia.situacao = 'INATIVO';
+    if ('PENDENTE' === correspondencia.situacao) {
+      correspondencia.dataHoraRetirada = new Date();
+      correspondencia.situacao = 'RETIRADA';
     } else {
-      correspondencia.situacao = 'ATIVO';
+      correspondencia.dataHoraRetirada = null;
+      correspondencia.situacao = 'PENDENTE';
     }
 
     this.correspondenciaService.putCorrespondencia(correspondencia).subscribe(
         result => {
-          this.snackBar.open('Situação do correspondencia alterada com sucesso!', 'X', {duration: 5000});
+          this.snackBar.open('Situação da correspondencia alterada com sucesso!', 'X', {duration: 5000});
           this.listarCorrespondencias();
         },
         error => {

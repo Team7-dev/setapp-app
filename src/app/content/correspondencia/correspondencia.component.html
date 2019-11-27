@@ -40,12 +40,12 @@
 
                                 <ng-container matColumnDef="dataHoraRecebida">
                                     <th *matHeaderCellDef class="text-center" mat-header-cell>Data recebimento</th>
-                                    <td *matCellDef="let element" mat-cell> {{element.dataHoraRecebida}} </td>
+                                    <td *matCellDef="let element" mat-cell> {{element.dataHoraRecebida | date: 'dd/MM/yyyy HH:mm:ss'}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="dataHoraRetirada">
                                     <th *matHeaderCellDef class="text-center" mat-header-cell>Data retirada</th>
-                                    <td *matCellDef="let element" mat-cell> {{element.dataHoraRetirada}} </td>
+                                    <td *matCellDef="let element" mat-cell> {{element.dataHoraRetirada | date: 'dd/MM/yyyy HH:mm:ss'}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="usuario">

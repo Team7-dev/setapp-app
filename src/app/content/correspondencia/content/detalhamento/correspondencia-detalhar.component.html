@@ -21,7 +21,7 @@
                             </div>
                             <div class="col-md-11">
                                 <div class="form-group">
-                                    <span class="text-primary">Nome: </span> {{correspondencia.nome}}
+                                    <span class="text-primary">Destinatário: </span> {{correspondencia.usuario.nome}}
                                 </div>
                             </div>
                         </div>
@@ -31,16 +31,18 @@
                                     <span class="text-primary">Data do cadastro: </span> {{correspondencia.dataHoraCadastro | date: 'dd/MM/yyyy HH:mm:ss'}}
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <span class="text-primary">CPF: </span> {{correspondencia.cpf}}
+                                    <span class="text-primary">Data do recebida: </span> {{correspondencia.dataHoraRecebida | date: 'dd/MM/yyyy HH:mm:ss'}}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <span class="text-primary">E-mail: </span> {{correspondencia.email}}
+                                    <span class="text-primary">Data do recebida: </span> {{correspondencia.dataHoraRetirada | date: 'dd/MM/yyyy HH:mm:ss'}}
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <span class="text-primary">Situação: </span> {{correspondencia.situacao}}

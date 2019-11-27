@@ -46,6 +46,7 @@ export class UnidadeFormularioComponent extends InComponent implements OnInit {
         if (!this.activatedRoute.snapshot.params['id']) {
             this.unidade.usuario = new Usuario();
         }
+
         this.filteredOptions = this.myControl.valueChanges
             .pipe(
                 startWith(''),
@@ -87,6 +88,9 @@ export class UnidadeFormularioComponent extends InComponent implements OnInit {
     }
 
     cadastrarUnidade() {
+        if(this.unidade.situacao == 'VAGO') {
+            this.unidade.usuario = null;
+        }
         this.unidadeService.postUnidade(this.unidade).subscribe(
             result => {
                 this.snackBar.open('Unidade cadastrada com sucesso!', 'X', {duration: 5000});

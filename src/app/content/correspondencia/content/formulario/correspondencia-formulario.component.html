@@ -18,7 +18,8 @@
                                 <div class="col-md-12">
                                     <mat-form-field>
                                         <mat-label for="inputDescricao">Descrição</mat-label>
-                                        <textarea #autosize="cdkTextareaAutosize" [(ngModel)]="correspondencia.descricao"
+                                        <textarea #autosize="cdkTextareaAutosize"
+                                                  [(ngModel)]="correspondencia.descricao"
                                                   cdkAutosizeMaxRows="5"
                                                   cdkAutosizeMinRows="1"
                                                   cdkTextareaAutosize id="inputDescricao" matInput
@@ -28,33 +29,25 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <mat-form-field>
                                         <mat-label for="inputDataRecebimento">Data Recebimento</mat-label>
-                                        <input [(ngModel)]="correspondencia.dataHoraRecebida" [matDatepicker]="picker"
-                                               id="inputDataRecebimento" matInput
-                                               name="inputDataRecebimento" required>
-                                        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
-                                        <mat-datepicker #picker></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-                                <div *ngIf="correspondencia.id != null" class="col-md-2">
-                                    <mat-form-field>
-                                        <mat-label for="inputDataRetirada">Data Retirada</mat-label>
-                                        <input [(ngModel)]="correspondencia.dataHoraRetirada" [matDatepicker]="picker"
-                                               id="inputDataRetirada" matInput name="inputDataRetirada"
+                                        <input [(ngModel)]="correspondencia.dataHoraRecebida" [formControl]="dateControl"
+                                               [matDatepicker]="picker" id="inputDataRecebimento" matInput name="inputDataRecebimento"
                                                required>
                                         <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <mat-form-field>
-                                        <mat-label for="inputUsuario">Usuário</mat-label>
-                                        <input [(ngModel)]="correspondencia.usuario" type="text" aria-label="Number" matInput [matAutocomplete]="auto" required>
-                                        <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-label for="inputDestinatario">Destinatário</mat-label>
+                                        <input [(ngModel)]="correspondencia.usuario" [formControl]="myControl"
+                                               [matAutocomplete]="auto" aria-label="Number" id="inputDestinatario"
+                                               matInput name="inputDestinatario" type="text" required>
+                                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                                             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                                {{option}}
+                                                {{option.nome}}
                                             </mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>

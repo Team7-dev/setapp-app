@@ -43,8 +43,9 @@
                             <div *ngIf="unidade.situacao == 'OCUPADO'" class="row">
                                 <div class="col-md-12">
                                     <mat-form-field>
+                                        <mat-label for="inputProprietario">Proprietário</mat-label>
                                         <input [(ngModel)]="unidade.usuario" [formControl]="myControl" [matAutocomplete]="auto" aria-label="Number"
-                                               matInput type="text">
+                                               matInput type="text" id="inputProprietario" name="inputProprietario" required>
                                         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                                             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                                 {{option.nome}}
