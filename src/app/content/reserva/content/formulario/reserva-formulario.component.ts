@@ -1,32 +1,32 @@
 import {Component, NgZone, OnInit, ViewChild} from '@angular/core';
-import {Correspondencia} from '../../../../model/correspondencia';
+import {Reserva} from '../../../../model/reserva';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CorrespondenciaService} from '../../correspondencia.service';
+import {ReservaService} from '../../reserva.service';
 import {InComponent} from '../../../../model/in-component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Usuario} from '../../../../model/usuario';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import {map, startWith, take} from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {UsuarioService} from '../../../usuario/usuario.service';
 import {now} from 'moment';
 
 @Component({
-    templateUrl: './correspondencia-formulario.component.html',
+    templateUrl: './reserva-formulario.component.html',
 })
-export class CorrespondenciaFormularioComponent extends InComponent implements OnInit {
+export class ReservaFormularioComponent extends InComponent implements OnInit {
 
     @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
 
     title: string;
-    public correspondencia: Correspondencia = new Correspondencia();
+    public reserva: Reserva = new Reserva();
     dateControl = new FormControl(now());
     myControl = new FormControl();
     options: Usuario[] = [];
     filteredOptions: Observable<Usuario[]>;
 
-    constructor(public correspondenciaService: CorrespondenciaService, private router: Router, public activatedRoute: ActivatedRoute, public snackBar: MatSnackBar, private _ngZone: NgZone, public usuarioService: UsuarioService) {
+    constructor(public reservaService: ReservaService, private router: Router, public activatedRoute: ActivatedRoute, public snackBar: MatSnackBar, private _ngZone: NgZone, public usuarioService: UsuarioService) {
         super();
 
         this.activatedRoute.data.subscribe(
@@ -35,21 +35,21 @@ export class CorrespondenciaFormularioComponent extends InComponent implements O
             }
         );
 
-        if (this.correspondenciaService.correspondencia) {
-            this.correspondencia = this.correspondenciaService.correspondencia;
+        if (this.reservaService.reserva) {
+            this.reserva = this.reservaService.reserva;
             return;
         }
 
         const id = this.activatedRoute.snapshot.params['id'];
 
         if (id) {
-            this.carregarCorrespondencia(id);
+            this.carregarReserva(id);
         }
     }
 
     ngOnInit() {
         if (!this.activatedRoute.snapshot.params['id']) {
-            this.correspondencia.usuario = new Usuario();
+            this.reserva.usuario = new Usuario();
         }
 
         this.recuperarUsuario();
@@ -61,43 +61,38 @@ export class CorrespondenciaFormularioComponent extends InComponent implements O
             );
     }
 
-    private _filter(value: string): Usuario[] {
-        const filterValue = value.toLowerCase();
-        return this.options.filter(option => option.nome.toLowerCase().includes(filterValue));
-    }
-
     displayFn(usuario) {
         return usuario.nome;
     }
 
-    carregarCorrespondencia(id: number) {
-        this.correspondenciaService.getCorrespondencia(id).subscribe(
+    carregarReserva(id: number) {
+        this.reservaService.getReserva(id).subscribe(
             result => {
-                this.correspondencia.fromObject(result);
+                this.reserva.fromObject(result);
             },
             error => {
                 this.snackBar.open('' + error + '', 'X', {duration: 5000});
-                this.router.navigate(['/correspondencia']);
+                this.router.navigate(['/reserva']);
             }
         )
     }
 
-    salvarCorrespondencia() {
-        if (this.correspondencia.id) {
-            this.correspondencia.dataHoraCadastro = new Date();
-            this.atualizarCorrespondencia();
+    salvarReserva() {
+        if (this.reserva.id) {
+            this.reserva.dataHoraCadastro = new Date();
+            this.atualizarReserva();
         } else {
-            this.correspondencia.dataHoraCadastro = new Date();
-            this.correspondencia.situacao = 'PENDENTE';
-            this.cadastrarCorrespondencia();
+            this.reserva.dataHoraCadastro = new Date();
+            this.reserva.situacao = 'PENDENTE';
+            this.cadastrarReserva();
         }
     }
 
-    cadastrarCorrespondencia() {
-        this.correspondenciaService.postCorrespondencia(this.correspondencia).subscribe(
+    cadastrarReserva() {
+        this.reservaService.postReserva(this.reserva).subscribe(
             result => {
-                this.snackBar.open('Correspondencia cadastrado com sucesso!', 'X', {duration: 5000});
-                this.router.navigate(['/correspondencia']);
+                this.snackBar.open('Reserva cadastrado com sucesso!', 'X', {duration: 5000});
+                this.router.navigate(['/reserva']);
             },
             error => {
                 this.snackBar.open('' + error + '', 'X', {duration: 5000});
@@ -123,11 +118,16 @@ export class CorrespondenciaFormularioComponent extends InComponent implements O
         )
     }
 
-    private atualizarCorrespondencia() {
-        this.correspondenciaService.putCorrespondencia(this.correspondencia).subscribe(
+    private _filter(value: string): Usuario[] {
+        const filterValue = value.toLowerCase();
+        return this.options.filter(option => option.nome.toLowerCase().includes(filterValue));
+    }
+
+    private atualizarReserva() {
+        this.reservaService.putReserva(this.reserva).subscribe(
             result => {
-                this.snackBar.open('Correspondencia alterado com sucesso!', 'X', {duration: 5000});
-                this.router.navigate(['/correspondencia']);
+                this.snackBar.open('Reserva alterado com sucesso!', 'X', {duration: 5000});
+                this.router.navigate(['/reserva']);
             },
             error => {
                 this.snackBar.open('' + error + '', 'X', {duration: 5000});

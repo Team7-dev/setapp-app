@@ -1,7 +1,8 @@
 import {Usuario} from './usuario';
 import {InModel} from './in-model';
+import {AreaReserva} from './area-reserva';
 
-export class AreaReserva extends InModel {
+export class Reserva extends InModel {
 
     id: number;
     dataHoraCadastro: Date;

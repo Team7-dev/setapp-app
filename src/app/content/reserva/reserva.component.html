@@ -1,140 +1,103 @@
 <div class="main-content">
+
     <div class="container-fluid">
+
         <div class="row">
+
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Listar Reservas</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    Name
-                                </th>
-                                <th>
-                                    Country
-                                </th>
-                                <th>
-                                    City
-                                </th>
-                                <th>
-                                    Salary
-                                </th>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        Dakota Rice
-                                    </td>
-                                    <td>
-                                        Niger
-                                    </td>
-                                    <td>
-                                        Oud-Turnhout
-                                    </td>
-                                    <td class="text-primary">
-                                        $36,738
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        2
-                                    </td>
-                                    <td>
-                                        Minerva Hooper
-                                    </td>
-                                    <td>
-                                        Curaçao
-                                    </td>
-                                    <td>
-                                        Sinaai-Waas
-                                    </td>
-                                    <td class="text-primary">
-                                        $23,789
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        3
-                                    </td>
-                                    <td>
-                                        Sage Rodriguez
-                                    </td>
-                                    <td>
-                                        Netherlands
-                                    </td>
-                                    <td>
-                                        Baileux
-                                    </td>
-                                    <td class="text-primary">
-                                        $56,142
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        Philip Chaney
-                                    </td>
-                                    <td>
-                                        Korea, South
-                                    </td>
-                                    <td>
-                                        Overland Park
-                                    </td>
-                                    <td class="text-primary">
-                                        $38,735
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        5
-                                    </td>
-                                    <td>
-                                        Doris Greene
-                                    </td>
-                                    <td>
-                                        Malawi
-                                    </td>
-                                    <td>
-                                        Feldkirchen in Kärnten
-                                    </td>
-                                    <td class="text-primary">
-                                        $63,542
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        6
-                                    </td>
-                                    <td>
-                                        Mason Porter
-                                    </td>
-                                    <td>
-                                        Chile
-                                    </td>
-                                    <td>
-                                        Gloucester
-                                    </td>
-                                    <td class="text-primary">
-                                        $78,615
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+
+                <div class="col-md-3 pull-right">
+                    <button (click)="cadastrarReserva()" class="btn-outline-info w-100" mat-raised-button>
+                        <mat-icon>person_add</mat-icon>
+                        Cadastrar reserva
+                    </button>
                 </div>
+
             </div>
+
+            <div class="col-md-12">
+
+                <div class="card">
+
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title ">Listar reservas</h4>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+
+                            <mat-form-field>
+                                <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+                            </mat-form-field>
+
+                            <table [dataSource]="dataSource" class="table" mat-table>
+
+                                <ng-container matColumnDef="id">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>ID</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.id}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="dataHoraRecebida">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Data recebimento</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.dataHoraRecebida | date: 'dd/MM/yyyy HH:mm:ss'}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="dataHoraRetirada">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Data retirada</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.dataHoraRetirada | date: 'dd/MM/yyyy HH:mm:ss'}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="usuario">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Destinatário</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.usuario.nome}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="situacao">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Situação</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.situacao}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="acoes">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Ações</th>
+                                    <td *matCellDef="let element" mat-cell>
+                                        <button (click)="detalharReserva(element)" class="text-info" mat-icon-button
+                                                matTooltip="Detalhar">
+                                            <i class="material-icons">list</i>
+                                        </button>
+                                        <button (click)="editarReserva(element)" class="text-warning" mat-icon-button
+                                                matTooltip="Editar">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                        <button (click)="alterarSituacaoReserva(element)" class="text-info"
+                                                mat-icon-button
+                                                matTooltip="Alterar Situação">
+                                            <i class="material-icons">swap_horiz</i>
+                                        </button>
+                                        <button (click)="confirmarDelecaoReserva(element)" class="text-danger"
+                                                mat-icon-button matTooltip="Excluir">
+                                            <i class="material-icons">delete_forever</i>
+                                        </button>
+                                    </td>
+                                </ng-container>
+
+                                <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+                                <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+                            </table>
+
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
+
     </div>
+
 </div>

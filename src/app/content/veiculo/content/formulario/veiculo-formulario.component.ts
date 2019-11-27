@@ -16,10 +16,10 @@ import {Usuario} from '../../../../model/usuario';
 })
 export class VeiculoFormularioComponent extends InComponent implements OnInit {
 
-    public veiculo: Veiculo = new Veiculo();
-    unidades: Unidade[] = [];
     title: string;
+    public veiculo: Veiculo = new Veiculo();
     myControl = new FormControl();
+    options: Unidade[] = [];
     filteredOptions: Observable<Unidade[]>;
 
     constructor(public veiculoService: VeiculoService, private router: Router, public activatedRoute: ActivatedRoute, public snackBar: MatSnackBar, public unidadeService: UnidadeService) {
@@ -40,6 +40,8 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
 
         if (id) {
             this.carregarVeiculo(id);
+        } else {
+            this.veiculo.unidade = null;
         }
     }
 
@@ -48,11 +50,25 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
             this.veiculo.usuario = new Usuario();
             this.veiculo.unidade = new Unidade();
         }
+
         this.filteredOptions = this.myControl.valueChanges
             .pipe(
                 startWith(''),
                 map(value => this._filter(value))
             );
+    }
+
+    private _filter(value: string): Unidade[] {
+        const filterValue = value.toLowerCase();
+        return this.options.filter(option => option.bloco.toLowerCase().includes(filterValue));
+    }
+
+    displayFn(unidade) {
+        if(unidade.bloco && unidade.numero) {
+            return unidade.bloco + ' - ' + unidade.numero;
+        } else {
+            return '';
+        }
     }
 
     carregarVeiculo(id: number) {
@@ -73,6 +89,7 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
             this.veiculo.dataHoraCadastro = new Date();
             this.atualizarVeiculo();
         } else {
+            if(this.veiculo.situacao)
             this.veiculo.usuario = this.veiculo.unidade.usuario;
             this.veiculo.dataHoraCadastro = new Date();
             this.cadastrarVeiculo();
@@ -93,6 +110,7 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
 
     recuperarUnidades() {
         this.veiculo.unidade = new Unidade();
+        this.veiculo.usuario = new Usuario();
         if (this.veiculo.situacao === 'VAGA') {
             this.recuperarUnidadesVagas();
         } else {
@@ -103,12 +121,12 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
     recuperarUnidadesVagas() {
         this.unidadeService.getUnidadesUnoccupied().subscribe(
             result => {
-                this.unidades = [];
+                this.options = [];
                 let unidade: Unidade;
                 for (let i = 0; i < result.length; i++) {
                     unidade = new Unidade();
                     unidade.fromObject(result[i]);
-                    this.unidades.push(unidade);
+                    this.options.push(unidade);
                 }
                 console.log(result);
             },
@@ -121,12 +139,12 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
     recuperarUnidadesOcupadas() {
         this.unidadeService.getUnidadesOccupied().subscribe(
             result => {
-                this.unidades = [];
+                this.options = [];
                 let unidade: Unidade;
                 for (let i = 0; i < result.length; i++) {
                     unidade = new Unidade();
                     unidade.fromObject(result[i]);
-                    this.unidades.push(unidade);
+                    this.options.push(unidade);
                 }
                 console.log(result);
             },
@@ -134,10 +152,6 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
                 this.snackBar.open('' + error + '', 'X', {duration: 5000});
             }
         )
-    }
-
-    displayFn(unidade?: Unidade): string | undefined {
-        return unidade ? unidade.bloco : undefined;
     }
 
     private atualizarVeiculo() {
@@ -152,8 +166,4 @@ export class VeiculoFormularioComponent extends InComponent implements OnInit {
         )
     }
 
-    private _filter(bloco: string): Unidade[] {
-        const filterValue = bloco.toUpperCase();
-        return this.unidades.filter(unidade => unidade.bloco.toUpperCase() === filterValue);
-    }
 }

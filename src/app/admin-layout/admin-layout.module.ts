@@ -34,6 +34,8 @@ import {VeiculoDetalharComponent} from '../content/veiculo/content/detalhamento/
 import {CorrespondenciaFormularioComponent} from '../content/correspondencia/content/formulario/correspondencia-formulario.component';
 import {CorrespondenciaDetalharComponent} from '../content/correspondencia/content/detalhamento/correspondencia-detalhar.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {ReservaFormularioComponent} from '../content/reserva/content/formulario/reserva-formulario.component';
+import {ReservaDetalharComponent} from '../content/reserva/content/detalhamento/reserva-detalhar.component';
 
 @NgModule({
     imports: [
@@ -64,6 +66,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
         EmergenciaComponent,
         OcorrenciaComponent,
         ReservaComponent,
+        ReservaFormularioComponent,
+        ReservaDetalharComponent,
         TransparenciaComponent,
         UnidadeComponent,
         UnidadeFormularioComponent,

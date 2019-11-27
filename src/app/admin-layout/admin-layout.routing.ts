@@ -21,6 +21,8 @@ import {VeiculoDetalharComponent} from '../content/veiculo/content/detalhamento/
 import {VeiculoFormularioComponent} from '../content/veiculo/content/formulario/veiculo-formulario.component';
 import {CorrespondenciaFormularioComponent} from '../content/correspondencia/content/formulario/correspondencia-formulario.component';
 import {CorrespondenciaDetalharComponent} from '../content/correspondencia/content/detalhamento/correspondencia-detalhar.component';
+import {ReservaDetalharComponent} from '../content/reserva/content/detalhamento/reserva-detalhar.component';
+import {ReservaFormularioComponent} from '../content/reserva/content/formulario/reserva-formulario.component';
 
 export const AdminLayoutRoutes: Routes = [
     {
@@ -49,7 +51,32 @@ export const AdminLayoutRoutes: Routes = [
         component: CorrespondenciaDetalharComponent,
         canActivate: [AuthGuard]
     },
-    {path: 'reserva', component: ReservaComponent, canActivate: [AuthGuard]},
+    {
+        path: 'reserva',
+        component: ReservaComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'reserva/cadastrar',
+        component: ReservaFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Cadastrar'
+        },
+    },
+    {
+        path: 'reserva/editar/:id',
+        component: ReservaFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Editar'
+        },
+    },
+    {
+        path: 'reserva/detalhar/:id',
+        component: ReservaDetalharComponent,
+        canActivate: [AuthGuard]
+    },
     {path: 'ocorrencia', component: OcorrenciaComponent, canActivate: [AuthGuard]},
     {
         path: 'visitante',
