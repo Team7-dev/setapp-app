@@ -11,6 +11,8 @@ import {ReservaComponent} from '../content/reserva/reserva.component';
 import {VisitanteComponent} from '../content/visitante/visitante.component';
 import {OcorrenciaComponent} from '../content/ocorrencia/ocorrencia.component';
 import {AssembleiaComponent} from '../content/assembleia/assembleia.component';
+import {AssembleiaFormularioComponent} from '../content/assembleia/content/formulario/assembleia-formulario.component';
+import {AssembleiaDetalharComponent} from '../content/assembleia/content/detalhamento/assembleia-detalhar.component';
 import {TransparenciaComponent} from '../content/transparencia/transparencia.component';
 import {BoletoComponent} from '../content/boleto/boleto.component';
 import {UnidadeComponent} from '../content/unidade/unidade.component';
@@ -59,6 +61,8 @@ import {ReservaDetalharComponent} from '../content/reserva/content/detalhamento/
     ],
     declarations: [
         AssembleiaComponent,
+        AssembleiaFormularioComponent,
+        AssembleiaDetalharComponent,
         BoletoComponent,
         CorrespondenciaComponent,
         CorrespondenciaFormularioComponent,

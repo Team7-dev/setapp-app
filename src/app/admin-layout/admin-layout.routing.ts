@@ -5,6 +5,8 @@ import {ReservaComponent} from '../content/reserva/reserva.component';
 import {OcorrenciaComponent} from '../content/ocorrencia/ocorrencia.component';
 import {VisitanteComponent} from '../content/visitante/visitante.component';
 import {AssembleiaComponent} from '../content/assembleia/assembleia.component';
+import {AssembleiaFormularioComponent} from '../content/assembleia/content/formulario/assembleia-formulario.component';
+import {AssembleiaDetalharComponent} from '../content/assembleia/content/detalhamento/assembleia-detalhar.component';
 import {TransparenciaComponent} from '../content/transparencia/transparencia.component';
 import {EmergenciaComponent} from '../content/emergencia/emergencia.component';
 import {BoletoComponent} from '../content/boleto/boleto.component';
@@ -105,6 +107,27 @@ export const AdminLayoutRoutes: Routes = [
         canActivate: [AuthGuard]
     },
     {path: 'assembleia', component: AssembleiaComponent, canActivate: [AuthGuard]},
+    {
+        path: 'assembleia/cadastrar',
+        component: AssembleiaFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Cadastrar'
+        },
+    },
+    {
+        path: 'assembleia/editar/:id',
+        component: AssembleiaFormularioComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Editar'
+        },
+    },
+    {
+        path: 'assembleia/detalhar/:id',
+        component: AssembleiaDetalharComponent,
+        canActivate: [AuthGuard]
+    },
     {path: 'transparencia', component: TransparenciaComponent, canActivate: [AuthGuard]},
     {path: 'emergencia', component: EmergenciaComponent, canActivate: [AuthGuard]},
     {path: 'boleto', component: BoletoComponent, canActivate: [AuthGuard]},

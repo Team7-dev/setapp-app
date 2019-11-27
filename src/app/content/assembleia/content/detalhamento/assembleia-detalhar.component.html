@@ -1,0 +1,72 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn-outline-info" mat-raised-button routerLink="/assembleia">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                    Voltar
+                </button>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Detalhar Assembleia</h4>
+                    </div>
+                    <div class="card-body">
+                        <h4><b>Assembleia</b></h4>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <span class="text-primary">ID: </span> {{assembleia.id}}
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="form-group">
+                                    <span class="text-primary">Motivo: </span> {{assembleia.motivo}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <span class="text-primary">Situacao: </span> {{assembleia.situacao}}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <span class="text-primary">Agendamento: </span> {{assembleia.dataHoraAgendamento | date: 'dd/MM/yyyy HH:mm:ss'}}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="text-primary">Data do cadastro: </span> {{assembleia.dataHoraCadastro | date: 'dd/MM/yyyy HH:mm:ss'}}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="text-primary">Data da Conclusão: </span> {{assembleia.dataHoraConclusao | date: 'dd/MM/yyyy HH:mm:ss'}}
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="mat-divider"></div>
+                        <br/>
+<!--                        <h4><b>Morador</b></h4>-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-md-1">-->
+<!--                                <div class="form-group">-->
+<!--                                    <span class="text-primary">ID: </span> {{assembleia.unidade.usuario.id}}-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-11">-->
+<!--                                <div class="form-group">-->
+<!--                                    <span class="text-primary">Nome: </span> {{assembleia.unidade.usuario.nome}}-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
