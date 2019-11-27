@@ -8,7 +8,7 @@
 
                 <div class="col-md-3 pull-right">
                     <button (click)="cadastrarReserva()" class="btn-outline-info w-100" mat-raised-button>
-                        <mat-icon>person_add</mat-icon>
+                        <mat-icon>date_range</mat-icon>
                         Cadastrar reserva
                     </button>
                 </div>
@@ -38,18 +38,18 @@
                                     <td *matCellDef="let element" mat-cell> {{element.id}} </td>
                                 </ng-container>
 
-                                <ng-container matColumnDef="dataHoraRecebida">
-                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Data recebimento</th>
-                                    <td *matCellDef="let element" mat-cell> {{element.dataHoraRecebida | date: 'dd/MM/yyyy HH:mm:ss'}} </td>
+                                <ng-container matColumnDef="dataHoraInicio">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Data início</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.dataHoraInicio | date: 'dd/MM/yyyy HH:mm:ss'}} </td>
                                 </ng-container>
 
-                                <ng-container matColumnDef="dataHoraRetirada">
-                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Data retirada</th>
-                                    <td *matCellDef="let element" mat-cell> {{element.dataHoraRetirada | date: 'dd/MM/yyyy HH:mm:ss'}} </td>
+                                <ng-container matColumnDef="dataHoraFim">
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Data fim</th>
+                                    <td *matCellDef="let element" mat-cell> {{element.dataHoraFim | date: 'dd/MM/yyyy HH:mm:ss'}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="usuario">
-                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Destinatário</th>
+                                    <th *matHeaderCellDef class="text-center" mat-header-cell>Responsável</th>
                                     <td *matCellDef="let element" mat-cell> {{element.usuario.nome}} </td>
                                 </ng-container>
 

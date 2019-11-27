@@ -18,7 +18,7 @@ export class ReservaComponent implements OnInit {
     public reserva: Reserva = new Reserva();
     public reservas: Reserva[] = [];
 
-    displayedColumns: string[] = ['id', 'dataHoraRecebida', 'dataHoraRetirada', 'usuario', 'situacao', 'acoes'];
+    displayedColumns: string[] = ['id', 'dataHoraInicio', 'dataHoraFim', 'usuario', 'situacao', 'acoes'];
     dataSource = new MatTableDataSource<Reserva>();
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

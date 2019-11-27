@@ -1,9 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
         <div class="navbar-wrapper">
-            <a class="navbar-brand" href="http://localhost:4200/#/correspondencia"><b>SetApp - Soluções Condominiais</b></a>
+            <a class="navbar-brand" href="http://localhost:4200/#/correspondencia">
+                <b>SetApp - Soluções Condominiais </b>
+            </a>
         </div>
-        <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
+        <button (click)="sidebarToggle()" class="navbar-toggler" mat-raised-button type="button">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
@@ -12,13 +14,13 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)" [matMenuTriggerFor]="menu">
+                    <a [matMenuTriggerFor]="menu" class="nav-link" href="javascript:void(0)">
                         <i class="material-icons">person</i>
                         <p>
                             <span class="d-lg-none d-md-block">Account</span>
                         </p>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="logout()">Logout</button>
+                            <button (click)="logout()" mat-menu-item>Logout</button>
                         </mat-menu>
                     </a>
                 </li>

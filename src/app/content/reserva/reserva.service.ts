@@ -54,8 +54,8 @@ export class ReservaService extends AppService {
         )
     }
 
-    public getReservasActives(): Observable<any> {
-        return this.http.get<any>(this.baseApi + 'setapp-api/reserva/ativos', this.getHeaders()).pipe(
+    public getAreaReserva(): Observable<any> {
+        return this.http.get<any>(this.baseApi + 'setapp-api/areaReserva', this.getHeaders()).pipe(
             map(this.extractData),
             catchError(this.handleError)
         )
