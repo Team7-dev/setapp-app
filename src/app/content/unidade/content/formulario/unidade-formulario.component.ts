@@ -15,10 +15,10 @@ import {Observable} from 'rxjs';
 })
 export class UnidadeFormularioComponent extends InComponent implements OnInit {
 
-    public unidade: Unidade = new Unidade();
-    usuarios: Usuario[] = [];
     title: string;
+    public unidade: Unidade = new Unidade();
     myControl = new FormControl();
+    options: Usuario[] = [];
     filteredOptions: Observable<Usuario[]>;
 
     constructor(public unidadeService: UnidadeService, private router: Router, public activatedRoute: ActivatedRoute, public snackBar: MatSnackBar, public usuarioService: UsuarioService) {
@@ -51,6 +51,15 @@ export class UnidadeFormularioComponent extends InComponent implements OnInit {
                 startWith(''),
                 map(value => this._filter(value))
             );
+    }
+
+    private _filter(value: string): Usuario[] {
+        const filterValue = value.toLowerCase();
+        return this.options.filter(option => option.nome.toLowerCase().includes(filterValue));
+    }
+
+    displayFn(usuario) {
+        return usuario.nome;
     }
 
     carregarUnidade(id: number) {
@@ -90,15 +99,14 @@ export class UnidadeFormularioComponent extends InComponent implements OnInit {
     }
 
     recuperarUsuario() {
-        this.unidade.usuario = null;
         this.usuarioService.getUsuariosActives().subscribe(
             result => {
-                this.usuarios = [];
+                this.options = [];
                 let usuario: Usuario;
                 for (let i = 0; i < result.length; i++) {
                     usuario = new Usuario();
                     usuario.fromObject(result[i]);
-                    this.usuarios.push(usuario);
+                    this.options.push(usuario);
                 }
                 console.log(result);
             },
@@ -106,10 +114,6 @@ export class UnidadeFormularioComponent extends InComponent implements OnInit {
                 this.snackBar.open('' + error + '', 'X', {duration: 5000});
             }
         )
-    }
-
-    displayFn(usuario?: Usuario): string | undefined {
-        return usuario ? usuario.nome : undefined;
     }
 
     private atualizarUnidade() {
@@ -122,10 +126,5 @@ export class UnidadeFormularioComponent extends InComponent implements OnInit {
                 this.snackBar.open('' + error + '', 'X', {duration: 5000});
             }
         )
-    }
-
-    private _filter(nome: string): Usuario[] {
-        const filterValue = nome.toUpperCase();
-        return this.usuarios.filter(usuario => usuario.nome.toUpperCase() == filterValue);
     }
 }
