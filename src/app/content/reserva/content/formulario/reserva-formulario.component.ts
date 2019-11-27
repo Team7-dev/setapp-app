@@ -11,6 +11,7 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {UsuarioService} from '../../../usuario/usuario.service';
 import {now} from 'moment';
+import {AreaReserva} from '../../../../model/area-reserva';
 
 @Component({
     templateUrl: './reserva-formulario.component.html',
@@ -25,6 +26,7 @@ export class ReservaFormularioComponent extends InComponent implements OnInit {
     myControl = new FormControl();
     options: Usuario[] = [];
     filteredOptions: Observable<Usuario[]>;
+    areaReserva: AreaReserva[] = [];
 
     constructor(public reservaService: ReservaService, private router: Router, public activatedRoute: ActivatedRoute, public snackBar: MatSnackBar, private _ngZone: NgZone, public usuarioService: UsuarioService) {
         super();
@@ -53,6 +55,7 @@ export class ReservaFormularioComponent extends InComponent implements OnInit {
         }
 
         this.recuperarUsuario();
+        this.recuperarAreaReserva();
 
         this.filteredOptions = this.myControl.valueChanges
             .pipe(
@@ -128,6 +131,24 @@ export class ReservaFormularioComponent extends InComponent implements OnInit {
             result => {
                 this.snackBar.open('Reserva alterado com sucesso!', 'X', {duration: 5000});
                 this.router.navigate(['/reserva']);
+            },
+            error => {
+                this.snackBar.open('' + error + '', 'X', {duration: 5000});
+            }
+        )
+    }
+
+    recuperarAreaReserva() {
+        this.reservaService.getAreaReserva().subscribe(
+            result => {
+                this.areaReserva = [];
+                let areaReserva: AreaReserva;
+                for (let i = 0; i < result.length; i++) {
+                    areaReserva = new AreaReserva();
+                    areaReserva.fromObject(result[i]);
+                    this.areaReserva.push(areaReserva);
+                }
+                console.log(result);
             },
             error => {
                 this.snackBar.open('' + error + '', 'X', {duration: 5000});
